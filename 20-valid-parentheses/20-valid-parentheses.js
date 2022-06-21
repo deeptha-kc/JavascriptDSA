@@ -3,19 +3,23 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-  const hashMap = { "(": ")", "{": "}", "[": "]" };
-  const stack = [];
-  for (let ch of s) {
-    if (hashMap[ch]) {
-      // ch is an opening bracket
-      stack.push(hashMap[ch]);
-    } else if (stack.length > 0 && stack[stack.length - 1] === ch) {
-      // ch is a closing bracket and top of stack matches
-      stack.pop();
-    } else {
-      // ch is a closing bracket and top of the stack doesn't match
-      return false;
+ const stack = []
+
+    for (i=0; i < s.length; i++){
+
+        let curChar = s[i];
+
+        switch(curChar) {
+            case '(': stack.push(')');
+                break;
+            case '[': stack.push(']');
+                break;
+            case '{': stack.push('}')
+                break;
+            default:
+                topElement = stack.pop()
+                if (curChar !== topElement) return false;       
+        }
     }
-  }
-  return stack.length === 0;
+    return stack.length === 0;
 };
