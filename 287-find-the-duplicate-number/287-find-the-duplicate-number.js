@@ -3,14 +3,14 @@
  * @return {number}
  */
 var findDuplicate = function(nums) {
-    let map = new Map();
-    for (let num of nums) {
-        if (map.get(num)) {
-            return num;
-        } else {
-            map.set(num, 1);
+   let map={};
+    let result;
+
+    nums.forEach(num=>{
+        if(map[num]){
+            result = num;
         }
-    }
-    
-    return null;
+        map[num]=num;
+    });
+    return result;
 };
